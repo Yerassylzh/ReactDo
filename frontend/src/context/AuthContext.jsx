@@ -10,6 +10,7 @@ import axios from "axios";
 import { ACCESS_TOKEN, baseUrl, REFRESH_TOKEN } from "../constants";
 import { useToast } from "./useToast";
 import { useNavigate } from "react-router-dom";
+import $ from "jquery";
 
 export const AuthContext = createContext();
 
@@ -27,6 +28,9 @@ export const AuthProvider = ({ children }) => {
   let loginUser = async (e) => {
     e.preventDefault();
 
+    $("#login-btn > svg").toggleClass("hidden");
+    $("#login-btn").attr("disabled", "true");
+
     try {
       let response = await axios.post(`${baseUrl}/api/token/`, {
         username: e.target.username.value,
@@ -43,6 +47,9 @@ export const AuthProvider = ({ children }) => {
       }
     } catch (error) {
       showToast("Incorrect username or password", "failure");
+    } finally {
+      $("#login-btn > svg").toggleClass("hidden");
+      $("#login-btn").removeAttr("disabled");
     }
   };
 

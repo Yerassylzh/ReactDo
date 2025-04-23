@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 
 import { AuthContext } from "../context/AuthContext";
 import { api } from "../api";
+import OverlayLoader from "../utils/OverlayLoader";
 
 export const ToDos = () => {
   const { user } = useContext(AuthContext);
@@ -25,7 +26,7 @@ export const ToDos = () => {
   }, []);
 
   if (tasks === null) {
-    return <p>Todos are loading..</p>;
+    return <OverlayLoader />;
   }
 
   return tasks.length > 0 ? (
