@@ -1,14 +1,14 @@
 import { ReactNode, useContext, useState } from "react";
 import { Navigate, Route } from "react-router-dom";
-import Login from "../components/Login";
-import Signup from "../components/Signup";
-import { AuthContext } from "../context/AuthContext";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
+import { useAuth } from "../context/useAuth";
 import { REFRESH_TOKEN } from "../constants";
 import { useEffect } from "react";
 import { isTokenExpired } from "../api";
 
 export default function PrivateRoute({ children }) {
-  let { setUser } = useContext(AuthContext);
+  let { setUser } = useAuth();
   let [isAuthenticated, setIsAuthenticated] = useState(null);
 
   useEffect(() => {

@@ -1,6 +1,7 @@
 import {
   createContext,
   ReactNode,
+  useCallback,
   useContext,
   useEffect,
   useState,
@@ -12,7 +13,11 @@ import { useToast } from "./useToast";
 import { useNavigate } from "react-router-dom";
 import $ from "jquery";
 
-export const AuthContext = createContext();
+const AuthContext = createContext();
+
+export const useAuth = () => {
+  return useContext(AuthContext);
+};
 
 export const AuthProvider = ({ children }) => {
   let { showToast } = useToast();
@@ -25,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
   const navigate = useNavigate();
 
-  let loginUser = async (e) => {
+  const loginUser = useCallback(async (e) => {
     e.preventDefault();
 
     $("#login-btn > svg").toggleClass("hidden");
@@ -40,28 +45,28 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem(ACCESS_TOKEN, response.data.access);
         localStorage.setItem(REFRESH_TOKEN, response.data.refresh);
         setUser(jwtDecode(response.data.access));
-        showToast("Authorized successfully", "success");
+        showToast("Authorized successfully", true);
         navigate("/");
       } else {
-        showToast("Authorization failed", "failure");
+        showToast("Authorization failed", false);
       }
     } catch (error) {
-      showToast("Incorrect username or password", "failure");
+      showToast("Incorrect username or password", false);
     } finally {
       $("#login-btn > svg").toggleClass("hidden");
       $("#login-btn").removeAttr("disabled");
     }
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = useCallback(() => {
     if (confirm("Are you sure you want to log out?")) {
       localStorage.removeItem(ACCESS_TOKEN);
       localStorage.removeItem(REFRESH_TOKEN);
       setUser(null);
-      showToast("Logged out successfully", "success");
+      showToast("Logged out successfully", true);
       navigate("/");
     }
-  };
+  }, []);
 
   const contextData = {
     user: user,

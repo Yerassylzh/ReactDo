@@ -1,10 +1,10 @@
 import axios from "axios";
 import { ACCESS_TOKEN, baseUrl, REFRESH_TOKEN } from "./constants";
 import { jwtDecode } from "jwt-decode";
-import { navigateRef } from "./components/App";
+import { navigateRef } from "./pages/App";
 
 export let api = axios.create({
-  baseURL: baseUrl,
+  baseURL: baseUrl + "/api/",
   headers: {
     Authorization: "",
   },

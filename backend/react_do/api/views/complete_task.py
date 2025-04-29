@@ -12,13 +12,14 @@ from ..models import Task
 from ..serializers.task import TaskSerializer
 
 
-class CreateToDoAPIView(APIView):
+class CompleteTaskAPIView(APIView):
     permission_classes = [IsAuthenticated]
     
     def post(self, *args, **kwargs):
-        todo = self.request.data["todo"]
-        deadline_at = self.request.data["deadline_at"]
-        dt = datetime.strptime(deadline_at, '%Y-%m-%dT%H:%M')
+        pk = self.request.data["id"]
+        task = Task.objects.get(pk=pk)
+        task.status = Task.StatusChoices.DONE
+        task.completed_at = datetime.now()
+        task.save()
 
-        Task.objects.create(user=self.request.user, text=todo, deadline_at=dt)
         return Response({})

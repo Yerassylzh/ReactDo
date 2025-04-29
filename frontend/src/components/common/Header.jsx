@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
+import { useAuth } from "../../context/useAuth";
 import React from "react";
 
 export default function Header() {
@@ -10,7 +10,7 @@ export default function Header() {
     setMenuState(!isMenuOpened);
   };
 
-  let { user, logout } = useContext(AuthContext);
+  let { user, logout } = useAuth();
 
   return (
     <header className="border-b border-gray-200">

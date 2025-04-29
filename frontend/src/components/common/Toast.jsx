@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-const Toast = ({ id, type = "success", message, onRemove }) => {
+const Toast = ({ id, isSuccess, message, onRemove }) => {
   const [fade, setFade] = useState("fade-in");
 
   useEffect(() => {
@@ -17,6 +17,7 @@ const Toast = ({ id, type = "success", message, onRemove }) => {
     }
   };
 
+  const messageType = isSuccess ? "success" : "failure";
   const typeStyles = {
     success: "bg-green-100 text-green-700 border border-green-400",
     failure: "bg-red-100 text-red-700 border border-red-400",
@@ -24,7 +25,7 @@ const Toast = ({ id, type = "success", message, onRemove }) => {
 
   return (
     <div
-      className={`w-full max-w-sm p-4 mb-2 rounded shadow ${typeStyles[type]} ${fade}`}
+      className={`w-full max-w-sm p-4 mb-2 rounded shadow ${typeStyles[messageType]} ${fade}`}
       onAnimationEnd={handleAnimationEnd}
     >
       {message}
