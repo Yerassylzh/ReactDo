@@ -27,7 +27,7 @@ function InProgressTaskGroup({ tasks, markTaskAsCompleted }) {
     <div className="flex flex-col gap-3 w-full">
       <div
         data-role="status-header"
-        className={`w-full bg-yellow-500 text-[17px] text-white px-5 py-2 flex justify-between items-center`}
+        className={`w-full rounded-2xl bg-yellow-500 text-[17px] text-white px-5 py-2 flex justify-between items-center`}
       >
         <div className="text-white">In progress</div>
         <DownArrow color={"white"} onClick={handleContentExpansion} />

@@ -22,7 +22,7 @@ function ExpiredTaskGroup({ tasks }) {
     <div className="flex flex-col gap-3 w-full">
       <div
         data-role="status-header"
-        className={`w-full bg-red-500 text-[17px] text-white px-5 py-2 flex justify-between items-center`}
+        className={`w-full rounded-2xl bg-red-500 text-[17px] text-white px-5 py-2 flex justify-between items-center`}
       >
         <div className="text-white">Expired</div>
         <DownArrow color={"white"} onClick={handleContentExpansion} />

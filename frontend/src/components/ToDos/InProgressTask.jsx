@@ -9,8 +9,9 @@ function InProgressTask({ task, onComplete, id }) {
     >
       <input type="checkbox" className="absolute" onChange={onComplete} />
       <div className="px-5 text-gray-700 w-full rounded-[3px]">{task.text}</div>
-      <div className="text-[13px] text-gray-600 w-full flex justify-end">
-        {task.formatted_deadline}
+      <div className="text-[13px] text-gray-600 w-full flex flex-col items-end">
+        <div className="">Deadline at</div>
+        <div className="">{task.formatted_deadline}</div>
       </div>
     </div>
   );

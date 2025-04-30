@@ -45,7 +45,7 @@ export const CreateToDo = () => {
 
   return (
     <main className="p-7 gap-3 flex flex-col justify-center items-center">
-      <div className="xl:w-[400px] md:w-[300px] sm:w-[300px]">
+      <div className="xl:w-[500px] md:w-[300px] sm:w-[300px]">
         <input
           type="text"
           id="todo"

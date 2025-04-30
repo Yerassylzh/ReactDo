@@ -6,8 +6,9 @@ function CompletedTask({ task }) {
       <div className="px-2 text-gray-700 w-full rounded-[3px] line-through">
         {task.text}
       </div>
-      <div className="text-[13px] text-gray-600 w-full flex justify-end">
-        {task.formatted_completed_at}
+      <div className="text-[13px] text-gray-600 w-full flex flex-col items-end">
+        <div className="">Completed at</div>
+        <div className="">{task.formatted_completed_at}</div>
       </div>
     </div>
   );

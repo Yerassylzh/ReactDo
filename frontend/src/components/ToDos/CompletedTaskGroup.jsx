@@ -23,7 +23,7 @@ function CompletedTaskGroup({ tasks }) {
     <div className="flex flex-col gap-3 w-full">
       <div
         data-role="status-header"
-        className={`w-full bg-green-500 text-[17px] text-white px-5 py-2 flex justify-between items-center`}
+        className={`w-ful rounded-2xl bg-green-500 text-[17px] text-white px-5 py-2 flex justify-between items-center`}
       >
         <div className="text-white">Completed</div>
         <DownArrow color={"white"} onClick={handleContentExpansion} />
