@@ -1,54 +1,94 @@
-# React + TypeScript + Vite
+## Description
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The basic website for managing tasks with an authorization system. It uses React as a frontend and Django as a backend
 
-Currently, two official plugins are available:
+## Necessary components
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Before you start, make sure that you have installed:
 
-## Expanding the ESLint configuration
+- [Node.js ](https://nodejs.org/) (version 16.x or newer)
+- [Git](https://git-scm.com/)
+- [Python](https://www.python.org/)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## Set up the backend
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ["./tsconfig.node.json", "./tsconfig.app.json"],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-});
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/Yerassylzh/ReactDo
+cd ReactDo
+cd backend
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Create and Activate a Virtual Environment
 
-```js
-// eslint.config.js
-import reactX from "eslint-plugin-react-x";
-import reactDom from "eslint-plugin-react-dom";
+#### On macOS/Linux
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    "react-x": reactX,
-    "react-dom": reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs["recommended-typescript"].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-});
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+#### On Windows
+
+```bash
+python -m venv venv
+venv\Scripts\activate
+```
+
+### 3. Environment Variables
+
+#### Create .env file in the current directory
+
+```bash
+DJANGO_SECRET_KEY=django-insecure-c3wi1%l-tnbrvgi=5=5k5x)s-2a0s7bg4vg@!+d!2t%)5pnx2r
+```
+
+### 4. Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Set Up the Database
+
+```bash
+cd react_do
+python manage.py migrate
+```
+
+### 6. Run the Development Server
+
+```bash
+python manage.py runserver
+```
+
+## Set up the frontend
+
+### 1. Open up a brand new terminal. Then navigate to the frontend folder
+
+```bash
+cd ReactDo
+cd frontend
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+
+```
+
+### 3. Set up environment variables
+
+#### Create a file .env in the frontend/ folder. Provide the following data:
+
+```bash
+VITE_BACKEND_BASE_URL=http://localhost:8000
+```
+
+### 4. Start the server
+
+```bash
+npm run dev
 ```
